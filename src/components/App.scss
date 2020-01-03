@@ -1,0 +1,57 @@
+body {
+  background-color: #EEEEEE;
+  font-family: "Comic Sans MS", serif;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+#root, .App {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 5px 5px 29px -15px rgba(0, 0, 0, 0.75);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  grid-template-columns: calc(100% - 300px) 300px;
+
+  .user-container {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .leaderboard-container {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+}
+
+@media (max-width: 700px) {
+  .content {
+    grid-template-rows: 40vh auto;
+    .user-container {
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 2;
+    }
+
+    .leaderboard-container {
+      overflow: hidden;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 1;
+    }
+  }
+}
