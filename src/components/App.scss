@@ -40,6 +40,7 @@ body, html {
 @media (max-width: 700px) {
   .content {
     grid-template-rows: 40vh auto;
+
     .user-container {
       grid-column-end: 3;
       grid-row-start: 2;
@@ -52,6 +53,7 @@ body, html {
       grid-column-end: 3;
       grid-row-start: 1;
       grid-row-end: 1;
+      border-bottom: solid #EFEFEF 1px;
     }
   }
 }

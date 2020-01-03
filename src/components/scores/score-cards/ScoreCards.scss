@@ -1,5 +1,7 @@
 .score-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  .user-guesses-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }

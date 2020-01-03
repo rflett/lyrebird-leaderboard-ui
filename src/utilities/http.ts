@@ -1,5 +1,4 @@
-export class HTTPService {
-
+export class Http {
     /**
      * Sends a GET request to the given URL and returns the supplied type
      * @param url - The URL to send to

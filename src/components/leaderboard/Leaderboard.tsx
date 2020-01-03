@@ -7,9 +7,9 @@ interface LeaderboardProps {
     users: ReadonlyArray<LeaderboardUser>;
 }
 
-function Leaderboard(props: LeaderboardProps) {
+export default function Leaderboard(props: LeaderboardProps) {
     return (
-        <div className="leaderboard card">
+        <div className="leaderboard">
             <div className="header"><img src={logo}/>Leaderboard</div>
             <div className="leaderboard-list">
                 <ol>
@@ -21,5 +21,3 @@ function Leaderboard(props: LeaderboardProps) {
         </div>
     );
 }
-
-export default Leaderboard;
