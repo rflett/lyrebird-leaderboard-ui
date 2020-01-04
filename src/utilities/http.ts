@@ -2,10 +2,14 @@ export class Http {
     /**
      * Sends a GET request to the given URL and returns the supplied type
      * @param url - The URL to send to
+     * @param jwt - The JWT used to authenticate with the server
      */
-    public static async get<T>(url: string): Promise<T | null> {
+    public static async get<T>(url: string, jwt: string = ""): Promise<T | null> {
         const response = await fetch(url, {
-            method: "GET"
+            headers: {
+                'Authorization': `Bearer ${jwt}`
+            },
+            method: "GET",
         }).catch((e) => this.OnError(e));
 
         if (response != null && response.ok) {
@@ -20,14 +24,20 @@ export class Http {
      * Sends a POST request to the given URL and returns the supplied type, if any
      * @param url - The URL to send to
      * @param body - The Body content to send in the POST request
+     * @param jwt - The JWT used to authenticate with the server
      */
-    public static async post<T>(url: string, body: any): Promise<T | null> {
+    public static async post<T>(url: string, body: any, jwt: string = ""): Promise<T | null> {
         const response = await fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
+            },
             method: "POST",
-            body: body
+            body: JSON.stringify(body),
         }).catch((e) => this.OnError(e));
 
-        if (response != null && response.ok) {
+        if (response != null && response.ok && response.status !== 204) {
             if (response.body != null) {
                 return await response.json();
             }
@@ -42,8 +52,12 @@ export class Http {
      */
     public static async put<T>(url: string, body: any): Promise<T | null> {
         const response = await fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: "PUT",
-            body: body
+            body: JSON.stringify(body),
         }).catch((e) => this.OnError(e));
 
         if (response != null && response.ok) {

@@ -1,9 +1,9 @@
-/** Used to manage user's local storage */
+/** Used to guess-input user's local storage */
 export class Storage {
     /** The JWT used to authenticate with the server */
-    private _jwt: string | null | undefined;
+    private static _jwt: string | null | undefined;
 
-    public get jwt(): string {
+    public static get jwt(): string {
         if (this._jwt == null) {
             this._jwt = window.localStorage.getItem("token");
         }
@@ -11,7 +11,7 @@ export class Storage {
         return this._jwt ?? "";
     }
 
-    public set jwt(value: string) {
+    public static set jwt(value: string) {
         this._jwt = value;
         // Also save in storage
         if (value == null) {

@@ -1,6 +1,6 @@
 import "./GuessItem.scss"
 import React from 'react';
-import { CorrectGuess } from "../../../models/correct-guess";
+import { CorrectGuess } from "../../../models/dto/correct-guess";
 
 interface GuessItemProps {
     guess: CorrectGuess

@@ -7,8 +7,9 @@ import {
 import './App.scss';
 import Leaderboard from "./leaderboard/Leaderboard";
 import Scorecards from "./scores/score-cards/ScoreCards";
-import { testLeaders, testUsers } from "../models/test-data";
+import { testLeaders, testUsers } from "../models/dto/test-data";
 import Login from "./management/login/Login";
+import GuessInput from "./management/guess-input/GuessInput";
 
 const App: React.FC = () => {
         const [users, setUsers] = useState(testUsers);
@@ -19,6 +20,9 @@ const App: React.FC = () => {
                 <Switch>
                     <Route path="/login">
                         <Login/>
+                    </Route>
+                    <Route path="/manage">
+                        <GuessInput/>
                     </Route>
                     <Route path="/">
                         <div className="App">
