@@ -1,7 +1,7 @@
 import "./UserGuesses.scss"
 import React from 'react';
 import GuessItem from "../guess-item/GuessItem";
-import { ScorecardUser } from "../../../models/dto/scorecard-user";
+import { ScorecardUser } from "../../../../models/dto/scorecard-user";
 
 interface UserGuessesProps {
     user: ScorecardUser

@@ -1,8 +1,8 @@
 import "./ScoreCards.scss"
 import React from 'react';
-import { ScorecardUser } from "../../../models/dto/scorecard-user";
 import UserGuesses from "../user-guesses/UserGuesses";
-import Header from "../../header/Header";
+import { ScorecardUser } from "../../../../models/dto/scorecard-user";
+import Header from "../../../shared/header/Header";
 
 interface ScorecardsProps {
     users: ReadonlyArray<ScorecardUser>

@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Leaderboard.scss";
 import logo from "./triplej-logo.svg"
-import { LeaderboardUser } from "../../models/dto/leaderboard-user";
+import { LeaderboardUser } from "../../../models/dto/leaderboard-user";
 
 interface LeaderboardProps {
     users: ReadonlyArray<LeaderboardUser>;

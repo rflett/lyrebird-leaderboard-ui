@@ -5,15 +5,22 @@ import {
     Route
 } from "react-router-dom";
 import './App.scss';
-import Leaderboard from "./leaderboard/Leaderboard";
-import Scorecards from "./scores/score-cards/ScoreCards";
+import Scorecards from "./dashboard/scores/score-cards/ScoreCards";
 import { testLeaders, testUsers } from "../models/dto/test-data";
-import Login from "./management/login/Login";
+import Login from "./login/login/Login";
 import GuessInput from "./management/guess-input/GuessInput";
+import Leaderboard from "./dashboard/leaderboard/Leaderboard";
+import DrinkingGame from "./shared/drinking-game/DrinkingGame";
+import io from 'socket.io-client';
 
 const App: React.FC = () => {
         const [users, setUsers] = useState(testUsers);
         const [leaders, setLeaders] = useState(testLeaders);
+        const [drinkingGame, setDrinkingGame] = useState("Drink Quickly");
+
+        const socket = io('http://localhost:4001');
+
+        socket.on("drinking-game", (data: string) => setDrinkingGame(data));
 
         return (
             <Router>
@@ -25,6 +32,8 @@ const App: React.FC = () => {
                         <GuessInput/>
                     </Route>
                     <Route path="/">
+
+                        <DrinkingGame game={drinkingGame}/>
                         <div className="App">
                             <div className="content">
                                 <div className="grid-item user-container">
