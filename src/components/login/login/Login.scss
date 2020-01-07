@@ -1,3 +1,5 @@
+@import "../../../style/mixins/variables";
+
 .login {
   .login-box {
     width: 300px;
@@ -10,9 +12,11 @@
     right: 0;
     top: 0;
     bottom: 0;
+    border-radius: 10px;
 
     h2 {
       text-align: center;
+      color: $triple-j-red;
     }
 
     #form-contents {
@@ -21,6 +25,7 @@
       margin-right: auto;
 
       label {
+        color: $triple-j-red;
       }
 
       label, input {
@@ -34,7 +39,7 @@
         height: 30px;
         border: none;
         outline: none;
-        border-bottom: slategray 1px solid;
+        border-bottom: $bright-navy-blue 1px solid;
       }
 
       .form-buttons {
@@ -47,9 +52,22 @@
         justify-content: space-between;
 
         button {
+          padding: 5px;
           cursor: pointer;
           font-size: 20px;
-          height: 30px;
+          height: 40px;
+          width: 90px;
+          border: none;
+        }
+
+        #signup-button {
+          background-color: transparent;
+          color: $bright-navy-blue;
+        }
+
+        #login-button {
+          background-color: $bright-navy-blue;
+          color: white;
         }
 
         button:disabled {

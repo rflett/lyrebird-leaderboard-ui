@@ -1,0 +1,53 @@
+@import "../../../style/mixins/variables";
+
+.latest-songs {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: white;
+
+  .header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+    padding: 20px 10px 10px 20px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    margin: 0;
+    color: $triple-j-red;
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 50px;
+    }
+  }
+
+  .latest-songs-list {
+    padding: 0 10px 10px 10px;
+    font-size: 20px;
+
+    .song-item {
+
+      .song-text {
+        margin-bottom: 10px;
+        font-weight: 100;
+      }
+
+      .divider:not(last-child) {
+        margin-bottom: 10px;
+        height: 1px;
+        background-color: $triple-j-red;
+      }
+    }
+
+    .song-item:last-child {
+      .divider {
+        display: none;
+      }
+    }
+  }
+}

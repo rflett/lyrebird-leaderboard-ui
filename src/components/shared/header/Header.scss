@@ -1,9 +1,13 @@
+@import "../../../style/mixins/variables";
+
 .header {
+
   .header-content {
     height: 50px;
     overflow: hidden;
     padding: 5px;
     box-sizing: border-box;
+    background-color: $bright-navy-blue;
 
     button {
       padding: 2px;

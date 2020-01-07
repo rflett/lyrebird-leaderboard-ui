@@ -1,0 +1,75 @@
+@import "../../style/mixins/variables";
+
+.management {
+  height: 100%;
+
+  .page-content {
+    position: relative;
+    height: calc(100% - 50px);
+
+    .management-wrapper {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 400px;
+      max-width: 100%;
+      height: 700px;
+      max-height: 100%;
+      box-sizing: border-box;
+      overflow: auto;
+
+      .wrapper-padding {
+        padding: 10px;
+      }
+
+      .tab-container {
+        display: flex;
+        position: sticky;
+        top: 0;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+
+        .tab {
+          cursor: pointer;
+          height: 35px;
+          line-height: 30px;
+          color: $bright-navy-blue;
+          text-align: center;
+          flex: 1;
+          transition: all .2s ease-in-out;
+          background-color: white;
+        }
+
+        .tab:hover {
+          color: white;
+          background-color: fade_out($bright-navy-blue, 0.5);
+        }
+
+        .tab.selected {
+          color: white;
+          background-color: $bright-navy-blue;
+        }
+      }
+
+      .header {
+        background-color: white;
+
+        img {
+          display: block;
+          height: 50px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        h2 {
+          text-align: center;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

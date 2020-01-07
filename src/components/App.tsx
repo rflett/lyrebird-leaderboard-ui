@@ -1,54 +1,77 @@
-import React, { useState } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.scss';
 import Scorecards from "./dashboard/scores/score-cards/ScoreCards";
 import { testLeaders, testUsers } from "../models/dto/test-data";
 import Login from "./login/login/Login";
-import GuessInput from "./management/guess-input/GuessInput";
-import Leaderboard from "./dashboard/leaderboard/Leaderboard";
+import LatestSongs from "./dashboard/latest-songs/LatestSongs";
 import DrinkingGame from "./shared/drinking-game/DrinkingGame";
-import io from 'socket.io-client';
+import { WebsocketService } from "../services/websocket-service";
+import Header from "./shared/header/Header";
+import { Page } from "../models/enums/page";
+import Management from "./management/Management";
+import { Http } from "../utilities/http";
+import { songUrl } from "../models/constants/urls";
+import { PlayedSong } from "../models/dto/played-song";
 
 const App: React.FC = () => {
-        const [users, setUsers] = useState(testUsers);
-        const [leaders, setLeaders] = useState(testLeaders);
-        const [drinkingGame, setDrinkingGame] = useState("Drink Quickly");
+    const [users, setUsers] = useState(testUsers);
+    const [songs, setSongs] = useState([] as ReadonlyArray<PlayedSong>);
+    const [drinkingGame, setDrinkingGame] = useState("Drink Quickly");
 
-        const socket = io('http://localhost:4001');
+    useEffect(() => {
+        loadPageData();
+    }, []);
 
-        socket.on("drinking-game", (data: string) => setDrinkingGame(data));
+    const webSockets = new WebsocketService();
+    webSockets.leaderboardChangeUpdate.subscribe(() => {
+        requestSonglist();
+    });
+    webSockets.drinkingGameUpdate.subscribe(val => setDrinkingGame(val));
 
-        return (
-            <Router>
-                <Switch>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
-                    <Route path="/manage">
-                        <GuessInput/>
-                    </Route>
-                    <Route path="/">
+    /** Requests the 10 last played songs */
+    async function requestSonglist() {
+        let songs = await Http.get<PlayedSong[]>(songUrl);
 
-                        <DrinkingGame game={drinkingGame}/>
-                        <div className="App">
-                            <div className="content">
-                                <div className="grid-item user-container">
-                                    <Scorecards users={users}/>
-                                </div>
-                                <div className="grid-item leaderboard-container">
-                                    <Leaderboard users={leaders}/>
-                                </div>
+        if (songs == null) {
+            songs = [];
+        }
+
+        setSongs(songs);
+    }
+
+    async function loadPageData() {
+        requestSonglist();
+    }
+
+    return (
+        <Router>
+            <Switch>
+                <Route path="/login">
+                    <Login/>
+                </Route>
+                <Route path="/manage">
+                    <Management/>
+                </Route>
+                <Route path="/">
+                    <div className="App">
+                        <div className="content">
+                            <div className="grid-item header-container">
+                                <Header page={Page.dashboard}/>
+                            </div>
+                            <div className="grid-item user-container">
+                                <Scorecards users={users}/>
+                                <DrinkingGame game={drinkingGame}/>
+                            </div>
+                            <div className="grid-item latest-songs-container">
+                                <LatestSongs songs={songs}/>
                             </div>
                         </div>
-                    </Route>
-                </Switch>
-            </Router>
-        );
-    }
-;
+                    </div>
+                </Route>
+            </Switch>
+        </Router>
+    );
+};
 
 export default App;

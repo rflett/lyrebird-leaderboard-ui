@@ -8,6 +8,7 @@ interface DrinkingGameProps {
 export default function DrinkingGame(props: DrinkingGameProps) {
     return (
         <div className="drinking-game-popup card">
+            <h3>Drink Up!</h3>
             {props.game}
         </div>
     );

@@ -60,7 +60,7 @@ export default function Login() {
             return;
         }
 
-        const name = prompt("Enter a name to display on the leaderboard");
+        const name = prompt("Enter a name to display on the latest-songs");
 
         if (name == null || name === "") {
             // User cancelled signup
@@ -87,6 +87,7 @@ export default function Login() {
         }
 
         Storage.jwt = response.jwt;
+        history.push("/manage");
     }
 
     return (

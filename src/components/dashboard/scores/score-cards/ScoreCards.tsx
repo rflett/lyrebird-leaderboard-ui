@@ -11,7 +11,6 @@ interface ScorecardsProps {
 export default function Scorecards(props: ScorecardsProps) {
     return (
         <div className="score-cards">
-            <Header/>
             <div className="user-guesses-container">
                 {
                     props.users.map((guesses, i) => <UserGuesses key={i} user={guesses}/>)

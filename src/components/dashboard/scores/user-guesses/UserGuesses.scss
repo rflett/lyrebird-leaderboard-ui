@@ -1,17 +1,36 @@
 .user-guesses {
+  position: relative;
   padding: 10px 20px;
-  width: 300px;
+  width: 350px;
   height: 350px;
   box-sizing: border-box;
   margin: 30px;
+  border-radius: 10px;
 
-  h2 {
-    margin: 0 0 5px;
+  .guess-background {
+    z-index: 1;
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.2;
   }
 
-  ul {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
+  .guess-contents {
+    z-index: 2;
+
+    h2 {
+      margin: 0 0 5px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+    }
   }
 }
