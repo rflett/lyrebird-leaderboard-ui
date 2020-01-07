@@ -1,5 +1,8 @@
-export interface CorrectGuess {
-    position: number;
-    title: string;
-    artist: string;
+export interface TopTenGuess {
+    songTitle: string;
+    guessedPosition: number;
+}
+
+export interface CorrectGuess extends TopTenGuess {
+    actualPosition: number;
 }

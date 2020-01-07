@@ -1,11 +1,10 @@
 import "./ScoreCards.scss"
 import React from 'react';
 import UserGuesses from "../user-guesses/UserGuesses";
-import { ScorecardUser } from "../../../../models/dto/scorecard-user";
-import Header from "../../../shared/header/Header";
+import { LeaderboardUser } from "../../../../models/dto/leaderboard-user";
 
 interface ScorecardsProps {
-    users: ReadonlyArray<ScorecardUser>
+    users: ReadonlyArray<LeaderboardUser>
 }
 
 export default function Scorecards(props: ScorecardsProps) {

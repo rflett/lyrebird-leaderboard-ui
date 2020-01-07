@@ -1,6 +1,12 @@
 .guess-item {
-  list-style-type: none;
-  margin: 0 0 5px;
-  padding: 0;
-  text-indent: initial;
+  .list-item {
+    list-style-type: none;
+    margin: 0 0 5px;
+    padding: 0;
+    text-indent: initial;
+  }
+
+  .list-item.not-guessed {
+    opacity: 0.4;
+  }
 }

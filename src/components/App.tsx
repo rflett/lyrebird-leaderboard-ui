@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.scss';
 import Scorecards from "./dashboard/scores/score-cards/ScoreCards";
-import { testLeaders, testUsers } from "../models/dto/test-data";
 import Login from "./login/login/Login";
 import LatestSongs from "./dashboard/latest-songs/LatestSongs";
 import DrinkingGame from "./shared/drinking-game/DrinkingGame";
@@ -11,11 +10,12 @@ import Header from "./shared/header/Header";
 import { Page } from "../models/enums/page";
 import Management from "./management/Management";
 import { Http } from "../utilities/http";
-import { songUrl } from "../models/constants/urls";
+import { leaderboardUrl, songUrl } from "../models/constants/urls";
 import { PlayedSong } from "../models/dto/played-song";
+import { LeaderboardUser } from "../models/dto/leaderboard-user";
 
 const App: React.FC = () => {
-    const [users, setUsers] = useState(testUsers);
+    const [users, setUsers] = useState([] as ReadonlyArray<LeaderboardUser>);
     const [songs, setSongs] = useState([] as ReadonlyArray<PlayedSong>);
     const [drinkingGame, setDrinkingGame] = useState("Drink Quickly");
 
@@ -25,7 +25,7 @@ const App: React.FC = () => {
 
     const webSockets = new WebsocketService();
     webSockets.leaderboardChangeUpdate.subscribe(() => {
-        requestSonglist();
+        loadPageData();
     });
     webSockets.drinkingGameUpdate.subscribe(val => setDrinkingGame(val));
 
@@ -40,8 +40,19 @@ const App: React.FC = () => {
         setSongs(songs);
     }
 
+    async function requestLeaderboard() {
+        let users = await Http.get<LeaderboardUser[]>(leaderboardUrl);
+
+        if (users == null) {
+            users = [];
+        }
+
+        setUsers(users);
+    }
+
     async function loadPageData() {
         requestSonglist();
+        requestLeaderboard();
     }
 
     return (
@@ -61,7 +72,7 @@ const App: React.FC = () => {
                             </div>
                             <div className="grid-item user-container">
                                 <Scorecards users={users}/>
-                                <DrinkingGame game={drinkingGame}/>
+                                {/*<DrinkingGame game={drinkingGame}/>*/}
                             </div>
                             <div className="grid-item latest-songs-container">
                                 <LatestSongs songs={songs}/>
