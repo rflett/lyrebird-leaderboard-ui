@@ -34,31 +34,31 @@ export default function PictureInput() {
             <div className="picture-flex">
                 <div className={"picture card " + (userIcon === 1 ? 'selected' : '')}
                      onClick={() => pictureClicked(1)}>
-                    <img src={`${baseImageUrl}/1`}></img>
+                    <img src={`${baseImageUrl}/1`} alt=""/>
                 </div>
                 <div className={"picture card " + (userIcon === 2 ? 'selected' : '')}
                      onClick={() => pictureClicked(2)}>
-                    <img src={`${baseImageUrl}/2`}></img>
+                    <img src={`${baseImageUrl}/2`} alt=""/>
                 </div>
                 <div className={"picture card " + (userIcon === 3 ? 'selected' : '')}
                      onClick={() => pictureClicked(3)}>
-                    <img src={`${baseImageUrl}/3`}></img>
+                    <img src={`${baseImageUrl}/3`} alt=""/>
                 </div>
                 <div className={"picture card " + (userIcon === 4 ? 'selected' : '')}
                      onClick={() => pictureClicked(4)}>
-                    <img src={`${baseImageUrl}/4`}></img>
+                    <img src={`${baseImageUrl}/4`} alt=""/>
                 </div>
                 <div className={"picture card " + (userIcon === 5 ? 'selected' : '')}
                      onClick={() => pictureClicked(5)}>
-                    <img src={`${baseImageUrl}/5`}></img>
+                    <img src={`${baseImageUrl}/5`} alt=""/>
                 </div>
                 <div className={"picture card " + (userIcon === 6 ? 'selected' : '')}
                      onClick={() => pictureClicked(6)}>
-                    <img src={`${baseImageUrl}/6`}></img>
+                    <img src={`${baseImageUrl}/6`} alt=""/>
                 </div>
                 <div className={"picture card " + (userIcon === 7 ? 'selected' : '')}
                      onClick={() => pictureClicked(7)}>
-                    <img src={`${baseImageUrl}/7`}></img>
+                    <img src={`${baseImageUrl}/7`} alt=""/>
                 </div>
             </div>
         </div>

@@ -4,7 +4,6 @@ import './App.scss';
 import Scorecards from "./dashboard/scores/score-cards/ScoreCards";
 import Login from "./login/login/Login";
 import LatestSongs from "./dashboard/latest-songs/LatestSongs";
-import DrinkingGame from "./shared/drinking-game/DrinkingGame";
 import { WebsocketService } from "../services/websocket-service";
 import Header from "./shared/header/Header";
 import { Page } from "../models/enums/page";
@@ -20,6 +19,7 @@ const App: React.FC = () => {
     const [drinkingGame, setDrinkingGame] = useState("Drink Quickly");
 
     useEffect(() => {
+        console.log(drinkingGame);
         const webSockets = new WebsocketService();
         webSockets.leaderboardChangeUpdate.subscribe(() => loadPageData());
         webSockets.drinkingGameUpdate.subscribe(val => setDrinkingGame(val));

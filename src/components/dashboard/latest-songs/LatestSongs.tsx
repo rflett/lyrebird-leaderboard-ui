@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./LatestSongs.scss";
 import logo from "./triplej-logo.svg"
 import { PlayedSong } from "../../../models/dto/played-song";
-import FlipMove from "react-flip-move";
 
 interface LatestSongsProps {
     songs: ReadonlyArray<PlayedSong>;
