@@ -1,8 +1,8 @@
 import "./UserGuesses.scss"
 import React from 'react';
 import GuessItem from "../guess-item/GuessItem";
-import drum from "../../latest-songs/triplej-logo.svg";
 import { LeaderboardUser } from "../../../../models/dto/leaderboard-user";
+import { baseImageUrl } from "../../../../models/constants/urls";
 
 interface UserGuessesProps {
     user: LeaderboardUser
@@ -11,7 +11,7 @@ interface UserGuessesProps {
 export default function UserGuesses(props: UserGuessesProps) {
     return (
         <div className="user-guesses card">
-            <img className="guess-background" src={drum} alt="Background"/>
+            <img className="guess-background" src={`${baseImageUrl}/${props.user.icon}`} alt="Background"/>
             <div className="guess-contents">
                 <h2>{props.user.name} - {props.user.score}pts</h2>
                 <ul>

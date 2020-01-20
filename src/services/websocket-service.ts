@@ -1,6 +1,5 @@
 import { Observable, Observer } from "rxjs";
 import io from "socket.io-client";
-import { LeaderboardUser } from "../models/dto/leaderboard-user";
 
 export class WebsocketService {
     private drinkingGameObserver!: Observer<string>;

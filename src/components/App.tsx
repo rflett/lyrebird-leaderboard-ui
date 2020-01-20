@@ -20,14 +20,11 @@ const App: React.FC = () => {
     const [drinkingGame, setDrinkingGame] = useState("Drink Quickly");
 
     useEffect(() => {
+        const webSockets = new WebsocketService();
+        webSockets.leaderboardChangeUpdate.subscribe(() => loadPageData());
+        webSockets.drinkingGameUpdate.subscribe(val => setDrinkingGame(val));
         loadPageData();
     }, []);
-
-    const webSockets = new WebsocketService();
-    webSockets.leaderboardChangeUpdate.subscribe(() => {
-        loadPageData();
-    });
-    webSockets.drinkingGameUpdate.subscribe(val => setDrinkingGame(val));
 
     /** Requests the 10 last played songs */
     async function requestSonglist() {

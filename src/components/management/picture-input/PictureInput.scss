@@ -15,8 +15,20 @@
       border: solid 1px $bright-navy-blue;
       margin: 10px;
       cursor: pointer;
+      overflow: hidden;
+      box-sizing: border-box;
       transition: all 0.2s $bounce-bezier;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
+
+    .picture.selected {
+      border: solid 5px $triple-j-red;
+    }
+
 
     .picture:hover {
       transform: scale(0.9);
