@@ -12,17 +12,20 @@ import { Http } from "../utilities/http";
 import { leaderboardUrl, songUrl } from "../models/constants/urls";
 import { PlayedSong } from "../models/dto/played-song";
 import { LeaderboardUser } from "../models/dto/leaderboard-user";
+import DrinkingGame from "./shared/drinking-game/DrinkingGame";
+import { DrinkingGameDto } from "../models/dto/drinking-game";
 
 const App: React.FC = () => {
+    let drinkingGameTimeout: number | null;
     const [users, setUsers] = useState([] as ReadonlyArray<LeaderboardUser>);
     const [songs, setSongs] = useState([] as ReadonlyArray<PlayedSong>);
-    const [drinkingGame, setDrinkingGame] = useState("Drink Quickly");
+    const [drinkingGame, setDrinkingGame] = useState(null as DrinkingGameDto | null);
 
     useEffect(() => {
         console.log(drinkingGame);
         const webSockets = new WebsocketService();
         webSockets.leaderboardChangeUpdate.subscribe(() => loadPageData());
-        webSockets.drinkingGameUpdate.subscribe(val => setDrinkingGame(val));
+        webSockets.drinkingGameUpdate.subscribe(val => updateVisibleDrinkingGame(val));
         loadPageData();
     }, []);
 
@@ -52,6 +55,17 @@ const App: React.FC = () => {
         requestLeaderboard();
     }
 
+    function updateVisibleDrinkingGame(game: DrinkingGameDto) {
+        if (drinkingGameTimeout != null) {
+            // Cancel the current timeout
+            window.clearTimeout(drinkingGameTimeout);
+        }
+        setDrinkingGame(game);
+
+        // Hide it again after 30 seconds
+        drinkingGameTimeout = window.setTimeout(() => setDrinkingGame(null), 30000);
+    }
+
     return (
         <Router>
             <Switch>
@@ -69,7 +83,10 @@ const App: React.FC = () => {
                             </div>
                             <div className="grid-item user-container">
                                 <Scorecards users={users}/>
-                                {/*<DrinkingGame game={drinkingGame}/>*/}
+                                {drinkingGame != null ?
+                                    <DrinkingGame game={drinkingGame}/> :
+                                    ""
+                                }
                             </div>
                             <div className="grid-item latest-songs-container">
                                 <LatestSongs songs={songs}/>

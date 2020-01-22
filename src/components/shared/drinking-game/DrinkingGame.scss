@@ -2,9 +2,10 @@
 
 .drinking-game-popup {
   position: fixed;
-  width: 400px;
+  width: 500px;
   max-width: 100%;
-  height: 100px;
+  max-height: 100%;
+  height: 200px;
   margin: auto;
   left: 0;
   right: 0;
@@ -12,21 +13,26 @@
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
-  box-shadow: 0 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
   z-index: 10;
-  animation: fade-in .6s $bounce-bezier;
+  animation: fade-in .5s $bounce-bezier forwards;
   border: solid 2px $triple-j-red;
 
   h3 {
+    font-size: 2em;
     margin: 0;
     text-align: center;
+  }
+
+  span {
+    font-size: 1.25em;
   }
 }
 
 @keyframes fade-in {
   0% {
     opacity: 0;
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
   100% {
     opacity: 1;

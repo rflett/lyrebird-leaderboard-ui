@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./PictureInput.scss";
 import { Http } from "../../../utilities/http";
-import { baseImageUrl, userIconUrl } from "../../../models/constants/urls";
+import { baseImageUrl, imageFileExt, userIconUrl } from "../../../models/constants/urls";
 import { UpdateIconDto } from "../../../models/dto/user/update-icon";
 import { Storage } from "../../../utilities/storage";
 
@@ -29,37 +29,28 @@ export default function PictureInput() {
         await Http.post(userIconUrl, body, Storage.jwt);
     }
 
+    /** Returns the correct number of pickers for the images */
+    function getPictureInputs() {
+        const pictureCount = Number(process.env.REACT_APP_IMAGE_COUNT ?? 0);
+
+        const rows: JSX.Element[] = [];
+        for (let i = 0; i < pictureCount; i++) {
+            rows.push(
+                <div className={"picture card " + (userIcon === i + 1 ? 'selected' : '')}
+                     onClick={() => pictureClicked(i + 1)}>
+                    <img src={`${baseImageUrl}/${i + 1}.${imageFileExt}`} alt=""/>
+                </div>
+            );
+        }
+        return rows;
+    }
+
     return (
         <div className="picture-input">
             <div className="picture-flex">
-                <div className={"picture card " + (userIcon === 1 ? 'selected' : '')}
-                     onClick={() => pictureClicked(1)}>
-                    <img src={`${baseImageUrl}/1`} alt=""/>
-                </div>
-                <div className={"picture card " + (userIcon === 2 ? 'selected' : '')}
-                     onClick={() => pictureClicked(2)}>
-                    <img src={`${baseImageUrl}/2`} alt=""/>
-                </div>
-                <div className={"picture card " + (userIcon === 3 ? 'selected' : '')}
-                     onClick={() => pictureClicked(3)}>
-                    <img src={`${baseImageUrl}/3`} alt=""/>
-                </div>
-                <div className={"picture card " + (userIcon === 4 ? 'selected' : '')}
-                     onClick={() => pictureClicked(4)}>
-                    <img src={`${baseImageUrl}/4`} alt=""/>
-                </div>
-                <div className={"picture card " + (userIcon === 5 ? 'selected' : '')}
-                     onClick={() => pictureClicked(5)}>
-                    <img src={`${baseImageUrl}/5`} alt=""/>
-                </div>
-                <div className={"picture card " + (userIcon === 6 ? 'selected' : '')}
-                     onClick={() => pictureClicked(6)}>
-                    <img src={`${baseImageUrl}/6`} alt=""/>
-                </div>
-                <div className={"picture card " + (userIcon === 7 ? 'selected' : '')}
-                     onClick={() => pictureClicked(7)}>
-                    <img src={`${baseImageUrl}/7`} alt=""/>
-                </div>
+                {
+                    getPictureInputs()
+                }
             </div>
         </div>
     );

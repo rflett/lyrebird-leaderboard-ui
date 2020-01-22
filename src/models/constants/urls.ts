@@ -1,5 +1,6 @@
 export const baseUrl = process.env.REACT_APP_API_URL;
-export const baseImageUrl = "https://robohash.org";
+export const baseImageUrl = process.env.REACT_APP_IMAGE_URL;
+export const imageFileExt = process.env.REACT_APP_IMAGE_EXT;
 
 export const registerUrl = `${baseUrl}/user/registration`;
 export const loginUrl = `${baseUrl}/user/login`;
