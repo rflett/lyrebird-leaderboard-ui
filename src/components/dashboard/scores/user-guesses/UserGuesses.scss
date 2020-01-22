@@ -1,10 +1,10 @@
 .user-guesses {
   position: relative;
   padding: 10px 20px;
-  width: 350px;
-  height: 350px;
+  width: 230px;
+  height: 230px;
   box-sizing: border-box;
-  margin: 30px;
+  margin-top: 10px;
   border-radius: 10px;
 
   .guess-background {
@@ -25,12 +25,13 @@
 
     h2 {
       margin: 0 0 5px;
+      font-size: 14px;
     }
 
     ul {
       margin: 0;
       padding: 0;
-      font-size: 16px;
+      font-size: 11px;
     }
   }
 }
