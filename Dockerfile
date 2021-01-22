@@ -2,7 +2,7 @@
 FROM node:lts-alpine as buildstep
 WORKDIR /app
 COPY . .
-RUN npm install --silent
+RUN npm install
 RUN npm run build
 
 # PRODUCTION
